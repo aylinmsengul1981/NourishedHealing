@@ -7,12 +7,11 @@
 
   <title>Nourished Healing | Registered Nutritionist</title>
 
-  <!-- SEO -->
   <meta name="description"
     content="Registered Nutritionist (MSc) specialising in eating disorder recovery and fertility nutrition with compassion and expertise.">
   <meta name="robots" content="index,follow">
 
-  <!-- Google Fonts (FIXED) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -217,45 +216,66 @@
   <div class="glass-card contact-form">
     <h2 style="font-family:'Playfair Display'; text-align:center;">Contact Me</h2>
 
-    <form 
-  action="https://formspree.io/f/xjgkbkpl" 
-  method="POST"
-  accept-charset="UTF-8">
+    <form id="contactForm">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input name="name" type="text" required>
+      </div>
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input name="Your name" type="text" required>
-  </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input name="email" type="email" required>
+      </div>
 
-  <div class="form-group">
-    <label>Email</label>
-    <input name="email" type="email" required>
-  </div>
+      <div class="form-group">
+        <label>How can I help?</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
 
-  <div class="form-group">
-    <label>How can I help?</label>
-    <textarea name="message" rows="5" required></textarea>
-  </div>
+      <input type="hidden" name="_subject" value="New enquiry from Nourished Healing website">
+      <input type="text" name="_gotcha" style="display:none">
 
-  <!-- Required by Formspree for redirect -->
-  <input type="hidden" name="_next" value="https://aylinmsengul1981.github.io/NourishedHealing/thank-you.html">
+      <button type="submit" class="cta-btn" style="width:100%;">Send Message</button>
+    </form>
 
-  <!-- Optional but recommended -->
-  <input type="hidden" name="_subject" value="New enquiry from Nourished Healing website">
-
-  <!-- Honeypot (spam protection) -->
-  <input type="text" name="_gotcha" style="display:none">
-
-  <button type="submit" class="cta-btn" style="width:100%;">
-    Send Message
-  </button>
-</form>
+    <p id="formStatus" style="margin-top:12px; display:none;"></p>
   </div>
 </section>
 
 <footer>
   &copy; 2025 Nourished Healing. All Rights Reserved.
 </footer>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+
+  const FORMSPREE_URL = "https://formspree.io/f/xjgkbkpl";
+  const THANK_YOU_URL = "https://aylinmsengul1981.github.io/NourishedHealing/thank-you.html";
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.style.display = "block";
+    statusEl.textContent = "Sending...";
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        window.location.href = THANK_YOU_URL;
+      } else {
+        statusEl.textContent = "Something went wrong. Please try again.";
+      }
+    } catch {
+      statusEl.textContent = "Network error. Please try again.";
+    }
+  });
+</script>
 
 </body>
 </html>
