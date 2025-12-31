@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Nourished Healing | Registered Nutritionist</title>
 
@@ -27,6 +27,7 @@
       --gradient-bg: linear-gradient(180deg, #f4f1e1 0%, #d8d3c0 100%);
     }
 
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -37,12 +38,19 @@
       line-height: 1.6;
     }
 
+    /* Header */
     header {
       padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(244, 241, 225, 0.85);
+      backdrop-filter: blur(8px);
     }
 
     .logo h1 {
@@ -53,19 +61,87 @@
 
     .logo p {
       margin: 0;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #666;
     }
 
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: var(--text-dark);
-      font-size: 0.9rem;
+    /* Desktop nav */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      padding: 6px 10px;
+      border-radius: 12px;
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    /* Hamburger button */
+    .menu-btn {
+      display: none;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: rgba(255,255,255,0.35);
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor: pointer;
+      line-height: 0;
+    }
+
+    .menu-icon {
+      width: 22px;
+      height: 16px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: transform 200ms ease, top 200ms ease, opacity 200ms ease;
+    }
+
+    .menu-icon span:nth-child(1) { top: 0; }
+    .menu-icon span:nth-child(2) { top: 7px; }
+    .menu-icon span:nth-child(3) { top: 14px; }
+
+    /* Mobile dropdown panel */
+    .mobile-nav {
+      display: none;
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin: 4px 0;
+    }
+
+    .mobile-nav a:hover {
+      background: rgba(0,0,0,0.04);
+    }
+
+    /* Hero */
     .hero {
-      height: 80vh;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -75,50 +151,50 @@
       padding: 0 20px;
     }
 
-    .heart-icon {
-      font-size: 3rem;
-      color: var(--accent-sage);
-      margin-bottom: 20px;
-    }
-
     .hero h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 16px;
+      line-height: 1.15;
     }
 
     .hero p {
       max-width: 700px;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
       color: #555;
+      margin: 0;
     }
 
     .badges {
       display: flex;
-      gap: 15px;
-      margin: 30px 0;
+      gap: 12px;
+      margin: 26px 0;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .badge {
       border: 1px solid #ccc;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(4px);
     }
 
     .cta-btn {
       background-color: var(--accent-sage);
       color: white;
-      padding: 15px 40px;
+      padding: 14px 34px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
       border: none;
       cursor: pointer;
+      display: inline-block;
     }
 
+    /* Sections */
     .section {
       padding: 80px 10%;
       text-align: center;
@@ -128,16 +204,17 @@
       background: var(--card-bg);
       border-radius: 20px;
       padding: 50px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       max-width: 900px;
       margin: 0 auto;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 30px;
       margin-top: 40px;
+      align-items: stretch;
     }
 
     .contact-form {
@@ -153,160 +230,249 @@
       padding: 12px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255, 255, 255, 0.8);
       font-family: inherit;
+      font-size: 1rem;
     }
 
     footer {
       padding: 40px;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #777;
     }
 
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero h2 { font-size: 2rem; }
+    /* ---------- TABLET (<= 1024px) ---------- */
+    @media (max-width: 1024px) {
+      header { padding: 18px 28px; }
+      .section { padding: 70px 6%; }
+      .glass-card { padding: 36px; }
+      .grid { gap: 22px; }
     }
+
+    /* ---------- MOBILE (<= 768px) ---------- */
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Hide desktop nav, show hamburger */
+      nav.desktop-nav { display: none; }
+      .menu-btn { display: inline-flex; align-self: flex-end; }
+
+      .hero {
+        min-height: auto;
+        padding: 56px 16px;
+      }
+
+      .section { padding: 56px 16px; }
+      .grid { grid-template-columns: 1fr; }
+
+      .glass-card { padding: 24px; border-radius: 18px; }
+      .cta-btn { width: 100%; text-align: center; }
+      .badge { font-size: 0.8rem; }
+    }
+
+    /* ---------- SMALL MOBILE (<= 420px) ---------- */
+    @media (max-width: 420px) {
+      .logo h1 { font-size: 1.35rem; }
+      .logo p { font-size: 0.78rem; }
+    }
+
+    /* Mobile menu open state */
+    header.menu-open .mobile-nav { display: block; }
+
+    header.menu-open .menu-icon span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+    header.menu-open .menu-icon span:nth-child(2) { opacity: 0; }
+    header.menu-open .menu-icon span:nth-child(3) { top: 7px; transform: rotate(-45deg); }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <h1>Nourished Healing</h1>
-    <p>Registered Nutritionist | MSc Dietetics & Nutrition</p>
-  </div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section id="home" class="hero">
-  <!--<div class="heart-icon">♡</div> -->
-  <h2>Healing Your Relationship with Food</h2>
-  <p>Registered Nutritionist (MSc) specialising in eating disorder recovery and fertility nutrition with compassion and expertise</p>
-
-  <div class="badges">
-    <div class="badge">✓ Registered Nutritionist</div>
-    <div class="badge">✓ MSc Dietetics & Nutrition</div>
-    <div class="badge">✓ Eating Disorder Specialist</div>
-  </div>
-
-  <a href="#contact" class="cta-btn">Begin Your Journey</a>
-</section>
-
-   <section id="services" class="section" style="background:#ece9d8;">
-     <h2 style="font-family:'Playfair Display'; margin-bottom:40px;">
-  Our Services
-</h2>
-  <div class="grid">
-    <div class="glass-card">
-      <h3>Bespoke Nutrition Plans</h3>
-      <p>Personalised meal plans designed specifically for your unique needs, health goals and lifestyle. Every plan is crafted with care to support your recovery and wellness journey.</p>
+  <header id="siteHeader">
+    <div class="logo">
+      <h1>Nourished Healing</h1>
+      <p>Registered Nutritionist | MSc Dietetics & Nutrition</p>
     </div>
-    <div class="glass-card">
-      <h3>One-on-One Cooking Sessions</h3>
-      <p>Build confidence in the kitchen with personalised cooking guidance. Learn practical skills and techniques in a supportive, judgement-free environment tailored to your comfort level.</p>
-    </div>
-  </div>
-</section>
 
-<section id="services" class="section" style="background:#ece9d8;">
-  <div class="grid">
-    <div class="glass-card">
-     <!-- <div class="clock-icon">⌚</div> -->
-      <h3>One-Off Consultations</h3>
-      <p>Single sessions for specific guidance, nutritional assessments, or when you need expert advice on a particular aspect of your health and nutrition journey.</p>
-    </div>
-    <div class="glass-card">
-      <!-- <div class="heart-icon">♡</div> -->
-      <h3>Holistic Mental Health Support</h3>
-      <p>Addressing the psychological aspects of eating disorders alongside nutritional guidance. We recognise that recovery encompasses both mind and body, providing comprehensive support.</p>
-    </div>
-  </div>
-</section>
+    <!-- Desktop navigation -->
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
+    <!-- Mobile menu button -->
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <span class="menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+
+    <!-- Mobile dropdown navigation -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h2>Healing Your Relationship with Food</h2>
+    <p>Registered Nutritionist (MSc) specialising in eating disorder recovery and fertility nutrition with compassion and expertise</p>
+
+    <div class="badges">
+      <div class="badge">✓ Registered Nutritionist</div>
+      <div class="badge">✓ MSc Dietetics & Nutrition</div>
+      <div class="badge">✓ Eating Disorder Specialist</div>
+    </div>
+
+    <a href="#contact" class="cta-btn">Begin Your Journey</a>
+  </section>
+
+  <!-- Services: keep ONE id="services" only -->
   <section id="services" class="section" style="background:#ece9d8;">
-  <div class="grid">
-    <div class="glass-card">
-      <h3>Custom Shopping Lists</h3>
-      <p>Take the stress out of grocery shopping with curated lists designed for your specific nutritional needs, preferences and budget. Make shopping simple and stress-free.</p>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:40px;">Our Services</h2>
+    <div class="grid">
+      <div class="glass-card">
+        <h3>Bespoke Nutrition Plans</h3>
+        <p>Personalised meal plans designed specifically for your unique needs, health goals and lifestyle. Every plan is crafted with care to support your recovery and wellness journey.</p>
+      </div>
+      <div class="glass-card">
+        <h3>One-on-One Cooking Sessions</h3>
+        <p>Build confidence in the kitchen with personalised cooking guidance. Learn practical skills and techniques in a supportive, judgement-free environment tailored to your comfort level.</p>
+      </div>
     </div>
-    <div class="glass-card">
-      <h3>Ongoing Recovery Support</h3>
-      <p>Block booking of weekly sessions for continuous support throughout your recovery. We'll work together on trigger foods, food aversions and all aspects of eating disorder recovery including mental health support.</p>
+  </section>
+
+  <section class="section" style="background:#ece9d8;">
+    <div class="grid">
+      <div class="glass-card">
+        <h3>One-Off Consultations</h3>
+        <p>Single sessions for specific guidance, nutritional assessments, or when you need expert advice on a particular aspect of your health and nutrition journey.</p>
+      </div>
+      <div class="glass-card">
+        <h3>Holistic Mental Health Support</h3>
+        <p>Addressing the psychological aspects of eating disorders alongside nutritional guidance. We recognise that recovery encompasses both mind and body, providing comprehensive support.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact" class="section">
-  <div class="glass-card contact-form">
-    <h2 style="font-family:'Playfair Display'; text-align:center;">Contact Me</h2>
-
-    <form id="contactForm">
-      <div class="form-group">
-        <label>Your Name</label>
-        <input name="name" type="text" required>
+  <section class="section" style="background:#ece9d8;">
+    <div class="grid">
+      <div class="glass-card">
+        <h3>Custom Shopping Lists</h3>
+        <p>Take the stress out of grocery shopping with curated lists designed for your specific nutritional needs, preferences and budget. Make shopping simple and stress-free.</p>
       </div>
-
-      <div class="form-group">
-        <label>Email</label>
-        <input name="email" type="email" required>
+      <div class="glass-card">
+        <h3>Ongoing Recovery Support</h3>
+        <p>Block booking of weekly sessions for continuous support throughout your recovery. We'll work together on trigger foods, food aversions and all aspects of eating disorder recovery including mental health support.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="form-group">
-        <label>How can I help?</label>
-        <textarea name="message" rows="5" required></textarea>
-      </div>
+  <section id="contact" class="section">
+    <div class="glass-card contact-form">
+      <h2 style="font-family:'Playfair Display'; text-align:center;">Contact Me</h2>
 
-      <input type="hidden" name="_subject" value="New enquiry from Nourished Healing website">
-      <input type="text" name="_gotcha" style="display:none">
+      <form id="contactForm">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input name="name" type="text" required>
+        </div>
 
-      <button type="submit" class="cta-btn" style="width:100%;">Send Message</button>
-    </form>
+        <div class="form-group">
+          <label>Email</label>
+          <input name="email" type="email" required>
+        </div>
 
-    <p id="formStatus" style="margin-top:12px; display:none;"></p>
-  </div>
-</section>
+        <div class="form-group">
+          <label>How can I help?</label>
+          <textarea name="message" rows="5" required></textarea>
+        </div>
 
-<footer>
-  &copy; 2026 Nourished Healing. All Rights Reserved.
-</footer>
+        <input type="hidden" name="_subject" value="New enquiry from Nourished Healing website">
+        <input type="text" name="_gotcha" style="display:none">
 
-<script>
-  const form = document.getElementById("contactForm");
-  const statusEl = document.getElementById("formStatus");
+        <button type="submit" class="cta-btn" style="width:100%;">Send Message</button>
+      </form>
 
-  const FORMSPREE_URL = "https://formspree.io/f/xjgkbkpl";
-  const THANK_YOU_URL = "https://aylinmsengul1981.github.io/NourishedHealing/thank-you.html";
+      <p id="formStatus" style="margin-top:12px; display:none;"></p>
+    </div>
+  </section>
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    statusEl.style.display = "block";
-    statusEl.textContent = "Sending...";
+  <footer>
+    &copy; 2026 Nourished Healing. All Rights Reserved.
+  </footer>
 
-    try {
-      const formData = new FormData(form);
-      const res = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
-      });
+  <script>
+    // ----- Mobile menu -----
+    const siteHeader = document.getElementById("siteHeader");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
 
-      if (res.ok) {
-        window.location.href = THANK_YOU_URL;
-      } else {
-        statusEl.textContent = "Something went wrong. Please try again.";
-      }
-    } catch {
-      statusEl.textContent = "Network error. Please try again.";
+    function closeMenu() {
+      siteHeader.classList.remove("menu-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open menu");
     }
-  });
-</script>
+
+    function toggleMenu() {
+      const isOpen = siteHeader.classList.toggle("menu-open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    }
+
+    menuBtn.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking a link
+    mobileNav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", closeMenu);
+    });
+
+    // Close menu on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    // Close if resizing up to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+
+    // ----- Formspree -----
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    const FORMSPREE_URL = "https://formspree.io/f/xjgkbkpl";
+    const THANK_YOU_URL = "https://aylinmsengul1981.github.io/NourishedHealing/thank-you.html";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.style.display = "block";
+      statusEl.textContent = "Sending...";
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          window.location.href = THANK_YOU_URL;
+        } else {
+          statusEl.textContent = "Something went wrong. Please try again.";
+        }
+      } catch {
+        statusEl.textContent = "Network error. Please try again.";
+      }
+    });
+  </script>
 
 </body>
 </html>
