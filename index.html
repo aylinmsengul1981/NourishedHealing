@@ -53,24 +53,46 @@
       backdrop-filter: blur(8px);
     }
 
+/* Logo layout */
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
+/* image */
 .logo-img {
-  height: 100px;
+  height: 52px;
   width: auto;
   object-fit: contain;
 }
 
-/* smaller on mobile */
-@media (max-width: 768px) {
-  .logo-img {
-    height: 40px;
-  }
+/* stacked text */
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
 }
+
+.logo-text h1 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo-text p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* mobile scaling */
+@media (max-width: 768px) {
+  .logo-img { height: 42px; }
+  .logo-text h1 { font-size: 1.25rem; }
+  .logo-text p { font-size: 0.75rem; }
+}
+
 
 
     .logo h1 {
@@ -400,13 +422,18 @@
 <body>
 
   <header id="siteHeader">
-    <div class="logo">
-     <img src="assets/nourished-healing-logo.png"
-       alt="Nourished Healing logo"
-       class="logo-img">
-      
-      <h1>Nourished Healing</h1>
-      <p>Registered Nutritionist | MSc Dietetics & Nutrition</p>
+<div class="logo">
+  <img 
+    src="assets/nourished-healing-logo.png"
+    alt="Nourished Healing logo"
+    class="logo-img"
+  >
+
+  <div class="logo-text">
+    <h1>Nourished Healing</h1>
+    <p>Registered Nutritionist | MSc Dietetics & Nutrition</p>
+  </div>
+</div>
     </div>
 
     <!-- Desktop navigation -->
