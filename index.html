@@ -53,6 +53,26 @@
       backdrop-filter: blur(8px);
     }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* smaller on mobile */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+}
+
+
     .logo h1 {
       font-family: 'Playfair Display', serif;
       margin: 0;
@@ -381,6 +401,10 @@
 
   <header id="siteHeader">
     <div class="logo">
+     <img src="assets/nourished-healing-logo.png"
+       alt="Nourished Healing logo"
+       class="logo-img">
+      
       <h1>Nourished Healing</h1>
       <p>Registered Nutritionist | MSc Dietetics & Nutrition</p>
     </div>
